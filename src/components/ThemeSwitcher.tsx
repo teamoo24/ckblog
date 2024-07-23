@@ -4,28 +4,31 @@ import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 const ThemeSwitcher = () => {
-  const [mode, setMode] = useState('light')
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
     // 初期テーマをlocalStorageから取得
     const savedTheme = localStorage.getItem('theme')
     if (savedTheme) {
-      setMode(savedTheme)
+      setTheme(savedTheme)
       document.documentElement.classList.add(savedTheme)
     }
   }, [])
 
   const toggleTheme = () => {
-    // 初期テーマをlocalStorageから取得
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
-    document.documentElement.classList.toggle('dark', mode === 'light')
-    localStorage.setItem('theme', mode)
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    document.documentElement.classList.remove(theme)
+    document.documentElement.classList.add(newTheme)
+    localStorage.setItem('theme', newTheme)
   }
 
   return (
     <>
       <Button onClick={toggleTheme} variant="contained" className="mt-4">
-        {mode === 'light' ? 'ダークモードに切り替え' : 'ライトモードに切り替え'}
+        {theme === 'light'
+          ? 'ダークモードに切り替え'
+          : 'ライトモードに切り替え'}
       </Button>
     </>
   )
