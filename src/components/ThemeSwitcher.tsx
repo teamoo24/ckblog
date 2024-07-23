@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, createTheme, CssBaseline } from '@mui/material'
+import { Button, createTheme, CssBaseline, PaletteMode } from '@mui/material'
 import { palette } from '@mui/system'
 import { useMemo, useState } from 'react'
 import {
@@ -9,7 +9,7 @@ import {
 } from '@emotion/react'
 
 const ThemeSwitcher = () => {
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState<PaletteMode>('light')
 
   const toggleTheme = () => {
     // 初期テーマをlocalStorageから取得
