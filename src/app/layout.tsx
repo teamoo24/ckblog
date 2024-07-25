@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,18 +19,20 @@ export default function RootLayout({
         {/* ヘッダー */}
         <header className="bg-gray-800 text-white p-4 dark:bg-gray-700">
           <h1 className="text-xl">CK Blog</h1>
+          <ThemeSwitcher />
         </header>
 
         {/* メインコンテンツ */}
-        <main className="flex flex-1">
+        <main className="flex-1 flex flex-col md:flex-row">
           {/* Primary セクション */}
-          <section className="flex-1 p-4 bg-gray-100 dark:bg-gray-800">
+          <section className="flex-1 p-4 bg-gray-100 dark:bg-gray-800 md:w-3/4">
+            <h2 className="text-2xl mb-4">メイン</h2>
             {children}
           </section>
 
           {/* Secondary セクション */}
-          <aside className="w-1/4 p-4 bg-gray-200 dark:bg-gray-700">
-            <h2 className="text-xl mb-4">Secondary Section</h2>
+          <aside className="w-full md:w-1/4 p-4 bg-gray-200 dark:bg-gray-700">
+            <h2 className="text-xl mb-4">サブ</h2>
             <p>ここにサイドコンテンツが入ります。</p>
           </aside>
         </main>
