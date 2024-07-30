@@ -26,7 +26,6 @@ export default function RootLayout({
         <main className="flex-1 flex flex-col md:flex-row">
           {/* Primary セクション */}
           <section className="flex-1 p-4 bg-gray-100 dark:bg-gray-800 md:w-3/4">
-            <h2 className="text-2xl mb-4">メイン</h2>
             {children}
           </section>
 
