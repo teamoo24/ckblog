@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,28 +17,13 @@ export default function RootLayout({
     <html lang="ja">
       <body className="min-h-screen flex flex-col bg-white text-black dark:bg-gray-900 dark:text-white">
         {/* ヘッダー */}
-        <header className="bg-gray-800 text-white p-4 dark:bg-gray-700 flex justify-between items-center">
-          <h1 className="text-xl">CK Blog</h1>
-          <ThemeSwitcher />
-        </header>
-
+        <Header/>
         {/* メインコンテンツ */}
-        <main className="flex-1 flex flex-col md:flex-row">
-          {/* Primary セクション */}
-          <section className="flex-1 p-4 bg-gray-100 dark:bg-gray-800 md:w-3/4">
-            {children}
-          </section>
-
-          {/* Secondary セクション */}
-          <aside className="w-full md:w-1/4 p-4 bg-gray-200 dark:bg-gray-700">
-            <h2 className="text-xl mb-4">サブ</h2>
-            <p>ここにサイドコンテンツが入ります。</p>
-          </aside>
+        <main className="container mx-auto p-4">
+          {children}
         </main>
-
-        {/* フッター */}
-        <footer className="bg-gray-800 text-white p-4 text-center dark:bg-gray-700">
-          <p>&copy; 2024 My Portfolio</p>
+        <footer className="bg-gray-800 text-white p-4 dark:bg-gray-700 text-center">
+          <p>&copy; 2024 CK Blog. All rights reserved.</p>
         </footer>
       </body>
     </html>
