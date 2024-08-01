@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import headerNavLinks from "@/data/headerVavLinks";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
@@ -20,8 +21,11 @@ const Header = () => {
               {link.title}
             </Link>
           ))}
+        <MobileNav />
       </div>
-      <ThemeSwitcher />
+      <div className="hidden sm:block">
+        <ThemeSwitcher />
+      </div>
     </header>
   );
 };
