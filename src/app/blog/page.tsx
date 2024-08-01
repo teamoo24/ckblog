@@ -1,20 +1,26 @@
-import { client } from "@/libs/client";
+import { getList } from "@/libs/micromcms";
+import Link from "next/link";
 
-const getStaticProps = async () => {
-  const data = await client.get({ endpoint: "blogs" });
+const BlogPage = async () => {
+  const { contents } = await getList();
 
-  return {
-    props: {
-      blog: data,
-    },
-  };
-};
+  // ページの生成された時間を取得
+  const time = new Date().toLocaleString();
 
-const BlogPage = () => {
+  console.log(contents);
   return (
-    <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">test</div>
-    </>
+    <div>
+      <h1>{time}</h1>
+      <ul>
+        {contents.map((post) => {
+          return (
+            <li key={post.id}>
+              <Link href={`/static/${post.id}`}>{post.title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

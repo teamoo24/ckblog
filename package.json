@@ -12,6 +12,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
+    "html-react-parser": "^5.1.12",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.5",
     "react": "^18",

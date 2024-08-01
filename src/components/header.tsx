@@ -5,7 +5,9 @@ import headerNavLinks from "@/data/headerVavLinks";
 const Header = () => {
   return (
     <header className="bg-gray-800 text-white p-4 dark:bg-gray-700 flex justify-between items-center">
-      <h1 className="text-xl">CK Blog</h1>
+      <Link href={"/"}>
+        <h1 className="text-xl">CK Blog</h1>
+      </Link>
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         {headerNavLinks
           .filter((link) => link.href !== "/")
