@@ -7,7 +7,6 @@ const BlogPage = async () => {
   // ページの生成された時間を取得
   const time = new Date().toLocaleString();
 
-  console.log(contents);
   return (
     <div>
       <h1>{time}</h1>
@@ -15,7 +14,7 @@ const BlogPage = async () => {
         {contents.map((post) => {
           return (
             <li key={post.id}>
-              <Link href={`/static/${post.id}`}>{post.title}</Link>
+              <Link href={`/blog/${post.id}`}>{post.title}</Link>
             </li>
           );
         })}

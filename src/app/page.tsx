@@ -47,7 +47,7 @@ export default async function Home() {
             return (
               <li key={post.id}>
                 <Link
-                  href={`/static/${post.id}`}
+                  href={`/blog/${post.id}`}
                   className="text-blue-500 hover:underline"
                 >
                   {post.title}
