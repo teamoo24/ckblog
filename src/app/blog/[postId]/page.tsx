@@ -30,8 +30,9 @@ export default async function StaticDetailPage({
 
   return (
     <div>
-      <h1>{post.title}</h1>
-      <h2>{time}</h2>
+      <div className="entry-header text-blue-800 dark:text-white font-bold">
+        <h1>{post.title}</h1>
+      </div>
       <div>{parse(post.content)}</div>
     </div>
   );
