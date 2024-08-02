@@ -1,19 +1,6 @@
 import React from "react";
-
-interface Repository {
-  name: string;
-  description: string;
-  html_url: string;
-}
-
-const fetchRepositories = async (): Promise<Repository[]> => {
-  const username = "teamoo24"; // GitHubのユーザー名
-  const res = await fetch(`https://api.github.com/users/${username}/repos`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch repositories");
-  }
-  return res.json();
-};
+import Repository from "@/types/Repository";
+import fetchRepositories from "@/libs/fetchRepositories";
 
 const ProjectsPage = async () => {
   let repositories: Repository[] = [];
@@ -39,7 +26,7 @@ const ProjectsPage = async () => {
               >
                 {repo.name}
               </a>
-              <p className="text-gray-600">{repo.description}</p>
+              <p>{repo.description}</p>
             </li>
           ))
         ) : (
