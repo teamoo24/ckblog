@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const ProjectsPage = async ({ params }: { params: { page: string } }) => {
-  const page = parseInt(params.page, 10); // 現在のページ番号
+  const page = params.page ? parseInt(params.page, 10) : 1; // ページ番号、指定がなければ1
   const perPage = 20; // 1ページあたりのリポジトリ数
 
   let repositories: Repository[] = [];
@@ -19,6 +19,10 @@ const ProjectsPage = async ({ params }: { params: { page: string } }) => {
   } catch (err) {
     error = (err as Error).message;
   }
+
+  const hasNextPage = repositories.length === perPage; // 次のページが存在するかどうか
+  const previousPage = page > 1 ? page - 1 : null; // 前のページ番号
+  const nextPage = hasNextPage ? page + 1 : null; // 次のページ番号
 
   return (
     <section className="container mx-auto p-4">
@@ -48,20 +52,22 @@ const ProjectsPage = async ({ params }: { params: { page: string } }) => {
           </ul>
 
           <div className="mt-4 flex justify-between">
-            {page > 1 && (
+            {previousPage && (
               <a
-                href={`/projects/${page - 1}`}
+                href={`/projects/${previousPage}`}
                 className="text-blue-500 hover:underline"
               >
                 前のページ
               </a>
             )}
-            <a
-              href={`/projects/${page + 1}`}
-              className="text-blue-500 hover:underline"
-            >
-              次のページ
-            </a>
+            {nextPage && (
+              <a
+                href={`/projects/${nextPage}`}
+                className="text-blue-500 hover:underline"
+              >
+                次のページ
+              </a>
+            )}
           </div>
         </>
       )}
