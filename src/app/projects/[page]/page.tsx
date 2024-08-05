@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "プロジェクト一覧",
 };
 
-const ProjectsPage = async ({ params }: { params: { page: string } }) => {
+const ProjectsPage = async ({ params }: { params: { page?: string } }) => {
   const page = params.page ? parseInt(params.page, 10) : 1; // ページ番号、指定がなければ1
   const perPage = 20; // 1ページあたりのリポジトリ数
 
@@ -15,14 +15,18 @@ const ProjectsPage = async ({ params }: { params: { page: string } }) => {
   let error: string | null = null;
 
   try {
-    repositories = await fetchRepositories(page, perPage);
+    const allRepositories = await fetchRepositories();
+    console.log(allRepositories.length);
+    // ページネーション
+    repositories = allRepositories.slice((page - 1) * perPage, page * perPage);
   } catch (err) {
     error = (err as Error).message;
   }
 
-  const hasNextPage = repositories.length === perPage; // 次のページが存在するかどうか
+  const totalRepositories = (await fetchRepositories()).length; // 全リポジトリ数
+  const totalPages = Math.ceil(totalRepositories / perPage); // 総ページ数
   const previousPage = page > 1 ? page - 1 : null; // 前のページ番号
-  const nextPage = hasNextPage ? page + 1 : null; // 次のページ番号
+  const nextPage = page < totalPages ? page + 1 : null; // 次のページ番号
 
   return (
     <section className="container mx-auto p-4">
