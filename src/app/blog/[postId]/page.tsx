@@ -12,7 +12,6 @@ const BlogPage = async () => {
     <div>
       <div className="grid-cols-1 sm:grid md:grid-cols-3 ">
         {contents.map((post) => {
-          console.log(post);
           return (
             <div
               className="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-slate-600 dark:text-white sm:shrink-0 sm:grow sm:basis-0"
