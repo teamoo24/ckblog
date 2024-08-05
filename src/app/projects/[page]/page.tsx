@@ -16,7 +16,6 @@ const ProjectsPage = async ({ params }: { params: { page?: string } }) => {
 
   try {
     const allRepositories = await fetchRepositories();
-    console.log(allRepositories.length);
     // ページネーション
     repositories = allRepositories.slice((page - 1) * perPage, page * perPage);
   } catch (err) {
