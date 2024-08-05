@@ -1,39 +1,44 @@
-import { notFound } from "next/navigation";
-import parse from "html-react-parser";
-import { getDetail, getList } from "@/libs/micromcms";
+import { getList } from "@/libs/micromcms";
+import Image from "next/image";
+import Link from "next/link";
 
-export async function generateStaticParams() {
+const BlogPage = async () => {
   const { contents } = await getList();
-
-  const paths = contents.map((post) => {
-    return {
-      postId: post.id,
-    };
-  });
-
-  return [...paths];
-}
-
-export default async function StaticDetailPage({
-  params: { postId },
-}: {
-  params: { postId: string };
-}) {
-  const post = await getDetail(postId);
 
   // ページの生成された時間を取得
   const time = new Date().toLocaleString();
 
-  if (!post) {
-    notFound();
-  }
-
   return (
     <div>
-      <div className="entry-header text-blue-800 dark:text-white font-bold">
-        <h1>{post.title}</h1>
+      <div className="grid-cols-1 sm:grid md:grid-cols-3 ">
+        {contents.map((post) => {
+          console.log(post);
+          return (
+            <div
+              className="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-slate-600 dark:text-white sm:shrink-0 sm:grow sm:basis-0"
+              key={post.id}
+            >
+              <Link href={`/articles/${post.id}`}>
+                <Image
+                  className="rounded-t-lg"
+                  src={`${post.eyecatch?.url}`}
+                  width={500}
+                  height={500}
+                  alt={`${post.id}`}
+                ></Image>
+              </Link>
+              <div className="p-6">
+                <h5 className="mb-2 text-xl font-medium leading-tight">
+                  {`${post.title}`}
+                </h5>
+                <p className="mb-4 text-base">{`${post.excerpt}`}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div>{parse(post.content)}</div>
     </div>
   );
-}
+};
+
+export default BlogPage;
