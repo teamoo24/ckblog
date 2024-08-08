@@ -51,12 +51,12 @@
 }
 
 /* リンク */
-a {
+.main-article a {
   color: #0073aa;
   text-decoration: none;
 }
 
-a:hover {
+.main-article a:hover {
   color: #005177;
   text-decoration: underline;
 }
