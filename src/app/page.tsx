@@ -13,9 +13,6 @@ export default async function Home() {
         <p className="text-lg mb-4">
           私の個人ブログへようこそ！ここでは、私のポートフォリオや最新のプロジェクト、役立つ記事を共有しています。
         </p>
-        <a href="#" className="text-blue-500 hover:underline">
-          最近の記事を読む
-        </a>
       </section>
 
       {/* ブログセクション */}
@@ -26,7 +23,7 @@ export default async function Home() {
             return (
               <li key={post.id}>
                 <Link
-                  href={`/blog/${post.id}`}
+                  href={`/articles/${post.id}`}
                   className="text-blue-500 hover:underline"
                 >
                   {post.title}
