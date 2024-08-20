@@ -61,4 +61,21 @@
   text-decoration: underline;
 }
 
-/* コード */
+/* codeブロックスタイル */
+
+/* ライトモードのスタイル */
+.main-article code {
+  background-color: #f1f1f1;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333; /* 文字色を追加 */
+}
+
+/* ダークモードのスタイル */
+@media (prefers-color-scheme: dark) {
+  .main-article code {
+    background-color: #2d2d2d; /* ダークモード用の背景色 */
+    color: #e0e0e0; /* ダークモード用の文字色 */
+  }
+}
